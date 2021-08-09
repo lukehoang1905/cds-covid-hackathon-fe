@@ -18,7 +18,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/request/form' component={RequestFormPage} />
+          <Route exact path='/request' component={RequestFormPage} />
           <Route exact path='/hub/:id' component={HubDetailPage} />
         </Switch>
       </Router>
