@@ -10,16 +10,16 @@ import { green } from "@material-ui/core/colors";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import PeopleIcon from "@material-ui/icons/PeopleOutlined";
 
-const TotalCustomers = (props) => (
+const TotalHelps = (props) => (
   <Card {...props}>
     <CardContent>
       <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
         <Grid item>
           <Typography color='textSecondary' gutterBottom variant='h6'>
-            TOTAL CUSTOMERS
+            TOTAL DELIVERIES
           </Typography>
           <Typography color='textPrimary' variant='h3'>
-            1,600
+            569
           </Typography>
         </Grid>
         <Grid item>
@@ -52,11 +52,11 @@ const TotalCustomers = (props) => (
           16%
         </Typography>
         <Typography color='textSecondary' variant='caption'>
-          Since last month
+          &nbsp;Since last month
         </Typography>
       </Box>
     </CardContent>
   </Card>
 );
 
-export default TotalCustomers;
+export default TotalHelps;

@@ -81,9 +81,9 @@ const orders = [
   },
 ];
 
-const LatestOrders = (props) => (
+const LatestDeliveries = (props) => (
   <Card {...props}>
-    <CardHeader title='Latest Orders' />
+    <CardHeader title='Latest Deliveries' />
     <Divider />
     <PerfectScrollbar>
       <Box sx={{ minWidth: 800 }}>
@@ -138,4 +138,4 @@ const LatestOrders = (props) => (
   </Card>
 );
 
-export default LatestOrders;
+export default LatestDeliveries;
