@@ -3,37 +3,37 @@ import * as types from "../constants/requests.constant";
 import api from "../../apiService";
 
 const getRequests = (pageNum, limit, query) => async (dispatch) => {
-    dispatch({ type: types.GET_REQUESTS_REQUEST, payload: null });
-    try {
-        let url = `${process.env.REACT_APP_BACKEND_API}api/REQUESTS?page=${pageNum}&limit=${limit}`;
-        if (query) url += `&q=${query}`;
+  dispatch({ type: types.GET_REQUESTS_REQUEST, payload: null });
+  try {
+    let url = `${process.env.REACT_APP_BACKEND_API}api/REQUESTS?page=${pageNum}&limit=${limit}`;
+    if (query) url += `&q=${query}`;
 
-        const data = await api.get(url);
-        console.log("hahaha", data)
-        dispatch({ type: types.GET_REQUESTS_SUCCESS, payload: data.data.data });
-    } catch (error) {
-        toast.error(error.message);
-        dispatch({ type: types.GET_REQUESTS_FAILURE, payload: error });
-    }
+    const data = await api.get(url);
+    console.log("hahaha", data);
+    dispatch({ type: types.GET_REQUESTS_SUCCESS, payload: data.data.data });
+  } catch (error) {
+    toast.error(error.message);
+    dispatch({ type: types.GET_REQUESTS_FAILURE, payload: error });
+  }
 };
 
+const getRequestDetail = (requestId) => async (dispatch) => {
+  dispatch({ type: types.GET_REQUEST_DETAIL_REQUEST, payload: null });
+  try {
+    let url = `${process.env.REACT_APP_BACKEND_API}api/requests/${requestId}`;
 
-// const getRequestDetail = (requestId) => async (dispatch) => {
-//     dispatch({ type: types.GET_Request_DETAIL_REQUEST, payload: null });
-//     try {
+    const data = await api.get(url);
+    console.log("hahaha", data);
 
-//         let url = `${process.env.REACT_APP_BACKEND_API}api/Requests/${RequestId}`
+    dispatch({
+      type: types.GET_REQUEST_DETAIL_SUCCESS,
+      payload: data.data.data,
+    });
+  } catch (error) {
+    toast.error(error.message);
+    dispatch({ type: types.GET_REQUEST_DETAIL_FAILURE, payload: error });
+  }
+};
 
-//         const data = await api.get(url);
-//         console.log("hahaha", data)
-
-//         dispatch({ type: types.GET_Request_DETAIL_SUCCESS, payload: data.data.data });
-//     } catch (error) {
-//         toast.error(error.message);
-//         dispatch({ type: types.GET_Request_DETAIL_FAILURE, payload: error });
-//     }
-// };
-
-
-const requestsActions = { getRequests};
+const requestsActions = { getRequests, getRequestDetail };
 export default requestsActions;
