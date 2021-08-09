@@ -9,11 +9,10 @@ import {
   useTheme,
   colors,
 } from "@material-ui/core";
-
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
-const HelpsChart = (props) => {
+const Sales = (props) => {
   const theme = useTheme();
 
   const data = {
@@ -129,4 +128,4 @@ const HelpsChart = (props) => {
   );
 };
 
-export default HelpsChart;
+export default Sales;
