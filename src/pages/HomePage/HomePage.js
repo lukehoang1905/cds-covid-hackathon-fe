@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import requestsActions from "../../redux/actions/requests.action";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import EmergencyCard from "../../components/EmergencyCard"
 import RequestsCard from "../../components/RequestCard/RequestCard"
+import Button from '@material-ui/core/Button';
 
 
 const HomePage = () => {
@@ -17,6 +18,10 @@ const HomePage = () => {
     const [errorMessage, setErrorMessage] = useState("");
     console.log(setErrorMessage)
     const history = useHistory();
+
+    function handleClick() {
+        history.push("/request");
+    }
 
     const handleClickProduct = (productId) => {
         history.push(`/products/${productId}`);
@@ -44,8 +49,9 @@ const HomePage = () => {
 
     return (
         <div>
-           <EmergencyCard/>
-           <RequestsCard/>
+            <Button variant="contained" onClick={handleClick}>Bạn cần giúp đỡ?</Button>
+            <EmergencyCard />
+            <RequestsCard />
         </div>
 
     );
