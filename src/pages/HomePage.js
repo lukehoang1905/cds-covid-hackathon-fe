@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Filter from "../components/Filter";
 import EmergencyCard from "../components/EmergencyCard";
-import RequestsCard from "../components/RequestCard/RequestCard";
+import RequestsCard from "../components/RequestCard";
 
 const HomePage = () => {
   const [pageNum, setPageNum] = useState(1);
