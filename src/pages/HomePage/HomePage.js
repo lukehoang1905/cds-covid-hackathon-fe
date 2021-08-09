@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import requestsActions from "../../redux/actions/requests.action";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
+import EmergencyCard from "../../components/EmergencyCard"
+import RequestsCard from "../../components/RequestCard/RequestCard"
 
 
 const HomePage = () => {
@@ -42,7 +44,8 @@ const HomePage = () => {
 
     return (
         <div>
-           
+           <EmergencyCard/>
+           <RequestsCard/>
         </div>
 
     );
