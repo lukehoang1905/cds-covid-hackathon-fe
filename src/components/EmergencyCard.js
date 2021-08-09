@@ -7,11 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const EmergencyCard = () => {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const [open, setOpen] = React.useState(true);
 
   const handleClose = () => {
     setOpen(false);
@@ -26,15 +22,18 @@ const EmergencyCard = () => {
         aria-describedby='alert-dialog-description'
       >
         <DialogTitle id='alert-dialog-title'>
-          {"Use Google's location service?"}
+          {"Are you in an Emergency?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
-            Are you in an Emergency?
+            Please contact these numbers immediately for help: <br />
+            Trung tâm ABC: 090-024-3504 <br />
+            Trung tâm ABC: 090-024-3504 <br />
+            Trung tâm ABC: 090-024-3504
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color='primary' autoFocus>
+          <Button onClick={handleClose} color='primary'>
             Continue to our website !
           </Button>
         </DialogActions>
