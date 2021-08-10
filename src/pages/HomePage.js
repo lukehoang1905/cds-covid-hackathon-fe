@@ -3,6 +3,9 @@ import Button from "@material-ui/core/Button";
 import requestsActions from "../redux/actions/requests.action";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import { Row, Col } from "react-bootstrap";
 
 import Filter from "../components/Filter";
 import EmergencyCard from "../components/EmergencyCard";
@@ -53,7 +56,20 @@ const HomePage = () => {
       <Button variant='contained' onClick={handleClick}>
         Bạn cần giúp đỡ?
       </Button>
-      <RequestsCard />
+      <Grid
+        sx={{ flexGrow: 1 }}
+        container
+        justifyContent='space-around'
+        spacing={4}
+      >
+        {requests.map((r) => {
+          return (
+            <Grid item>
+              <RequestsCard />
+            </Grid>
+          );
+        })}
+      </Grid>
     </div>
   );
 };
