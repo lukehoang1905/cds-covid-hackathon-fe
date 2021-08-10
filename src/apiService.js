@@ -23,7 +23,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (response) => {
         console.log("Response:", response);
-        return response;
+        return response.data;
     },
     function (error) {
         error = error.response.data;
