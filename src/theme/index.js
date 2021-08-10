@@ -6,16 +6,16 @@ import typography from "./typography";
 const theme = createTheme({
   palette: {
     background: {
-      default: "#F4F6F8",
+      default: "#fff",
       paper: colors.common.white,
     },
     primary: {
       contrastText: "#ffffff",
-      main: "#5664d2",
+      main: "#000000",
     },
     text: {
-      primary: "#172b4d",
-      secondary: "#6b778c",
+      primary: "#000000",
+      secondary: "#000000",
     },
   },
   shadows,
