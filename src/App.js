@@ -6,6 +6,8 @@ import ThemeProvider from "@material-ui/styles/ThemeProvider";
 
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+
 import RequestFormPage from "./pages/RequestFormPage";
 import HubDetailPage from "./pages/HubDetailPage";
 import RequestDetailPage from "./pages/RequestDetailPage";
@@ -20,7 +22,8 @@ function App() {
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/request' component={RequestFormPage} />
+          <Route exact path='/login' component={LoginPage} />
+          <Route exact path='/request/form' component={RequestFormPage} />
           <Route exact path='/hub/:id' component={HubDetailPage} />
           <Route exact path='/request/:id' component={RequestDetailPage} />
         </Switch>

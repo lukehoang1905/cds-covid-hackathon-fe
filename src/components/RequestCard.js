@@ -52,7 +52,7 @@ export default function RequestsCard() {
       <CardHeader
         avatar={
           <Avatar aria-label='recipe' className={classes.avatar}>
-            R
+            {}
           </Avatar>
         }
         action={
