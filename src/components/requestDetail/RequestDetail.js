@@ -46,7 +46,7 @@ const mainFeaturedPost = {
 
 const featuredPosts = [
   {
-    title: "Featured post",
+    title: "Family Details",
     date: "Nov 12",
     description:
       "This is a wider card with supporting text below as a natural lead-in to additional content.",
@@ -90,7 +90,7 @@ const sidebar = {
 
 export default function RequestDetail(props) {
   const classes = useStyles();
-  const { request, requestId } = props;
+  const { request } = props;
   console.log(request);
 
   return (
@@ -106,7 +106,7 @@ export default function RequestDetail(props) {
             ))}
           </Grid>
           <Grid container spacing={5} className={classes.mainGrid}>
-            <Main title="From the firehose" post1={post1} />
+            <Main title="Request Detail" post1={post1} />
             <Sidebar
               title={sidebar.title}
               description={sidebar.description}

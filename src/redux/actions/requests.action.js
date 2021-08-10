@@ -26,11 +26,11 @@ const getRequestDetail = (requestId) => async (dispatch) => {
   try {
     let url = `${process.env.REACT_APP_BACKEND_API}charity/request/${requestId}`;
     const data = await api.get(url);
-    console.log("haha in request for detail", data);
+    console.log("haha in request for detail, hichichic", data);
 
     dispatch({
       type: types.GET_REQUEST_DETAIL_SUCCESS,
-      payload: data.data.data,
+      payload: data.data,
     });
   } catch (error) {
     toast.error(error.message);

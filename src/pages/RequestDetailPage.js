@@ -9,6 +9,7 @@ import RequestDetail from "../components/requestDetail/RequestDetail";
 const RequestDetailPage = () => {
   const params = useParams();
   const requestId = params.id;
+  console.log("idididididididid", requestId);
   const state = useSelector((state) => state);
   const loading = state.requestsReducer.loading;
   const request = state.requestsReducer.selectedRequest;

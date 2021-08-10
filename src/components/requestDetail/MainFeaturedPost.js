@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MainFeaturedPost(props) {
   const classes = useStyles();
   const { post, request } = props;
+  console.log("MainFeaturedPost.............data", request);
 
   return (
     <Paper
@@ -65,7 +66,7 @@ export default function MainFeaturedPost(props) {
               {post.title}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
-              {/* {request.description} */}
+              {post.description}
             </Typography>
             <Link variant="subtitle1" href="#">
               {post.linkText}
