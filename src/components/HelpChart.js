@@ -1,4 +1,4 @@
-import { Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import {
   Box,
   Button,
@@ -9,30 +9,51 @@ import {
   useTheme,
   colors,
 } from "@material-ui/core";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
+import { useState } from "react";
 
-const HelpChart = (props) => {
+const HelpChart = ({ hub, typeChart }) => {
   const theme = useTheme();
+  console.log("hub.requestSchedule", hub);
+  const [pieFilter, setPieFilter] = useState("Request");
+  if (!hub.requestSchedule) return <>...loading</>;
 
-  const data = {
+  const barData = {
     datasets: [
       {
-        backgroundColor: colors.indigo[500],
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: "This year",
+        backgroundColor: colors.grey[500],
+        data: Object.values(hub.requestSchedule),
+        label: "Request",
       },
       {
-        backgroundColor: colors.grey[200],
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: "Last year",
+        backgroundColor: colors.grey[300],
+        data: Object.values(hub.donationActual),
+        label: "Donation",
       },
     ],
-    labels: ["1 Aug", "2 Aug", "3 Aug", "4 Aug", "5 Aug", "6 Aug"],
+    labels: Object.keys(hub.donationSchedule),
+  };
+
+  const pieData = {
+    datasets: [
+      {
+        backgroundColor: [
+          colors.grey[100],
+          colors.grey[200],
+          colors.grey[300],
+          colors.grey[400],
+          colors.grey[500],
+          colors.grey[600],
+        ],
+        data: Object.values(hub.donationSchedule).sort((a, b) => a - b),
+        label: "Request",
+      },
+    ],
+    labels: Object.keys(hub.donationSchedule),
   };
 
   const options = {
-    animation: false,
     cornerRadius: 20,
     layout: { padding: 0 },
     legend: { display: false },
@@ -87,14 +108,18 @@ const HelpChart = (props) => {
   };
 
   return (
-    <Card {...props}>
+    <Card>
       <CardHeader
         action={
-          <Button endIcon={<ArrowDropDownIcon />} size='small' variant='text'>
-            Last 7 days
+          <Button variant="outlined" size="small">
+            toggle {pieFilter === "Request" ? "Donation" : "Request"}
           </Button>
         }
-        title='Requests / Deliveries'
+        title={
+          typeChart === "bar"
+            ? "Request / Donation"
+            : `Proportion of ${pieFilter}`
+        }
       />
       <Divider />
       <CardContent>
@@ -104,7 +129,11 @@ const HelpChart = (props) => {
             position: "relative",
           }}
         >
-          <Bar data={data} options={options} />
+          {typeChart === "pie" ? (
+            <Pie data={pieData} options={options} />
+          ) : (
+            <Bar data={barData} options={options} />
+          )}
         </Box>
       </CardContent>
       <Divider />
@@ -116,10 +145,10 @@ const HelpChart = (props) => {
         }}
       >
         <Button
-          color='primary'
+          color="primary"
           endIcon={<ArrowRightIcon />}
-          size='small'
-          variant='text'
+          size="small"
+          variant="text"
         >
           Overview
         </Button>

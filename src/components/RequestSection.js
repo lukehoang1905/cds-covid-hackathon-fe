@@ -39,9 +39,9 @@ const RequestSection = () => {
       <Grid
         className={classes.grid}
         container
-        alignItems='center'
-        justifyContent='space-between'
-        direction='row'
+        alignItems="center"
+        justifyContent="space-between"
+        direction="row"
       >
         <Grid item>
           <Typography className={classes.typo} variant='h4'>
@@ -55,7 +55,7 @@ const RequestSection = () => {
       <Grid
         sx={{ flexGrow: 1 }}
         container
-        justifyContent='space-around'
+        justifyContent="space-around"
         spacing={4}
       >
         {requests?.map((info) => {

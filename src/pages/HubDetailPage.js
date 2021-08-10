@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import {  Box, Button, Container, Grid } from "@material-ui/core";
+import { Box, Button, Container, CssBaseline, Grid } from "@material-ui/core";
 
 import LatestDeliveries from "../components/LatestDeliveries";
 import HelpChart from "../components/HelpChart";
@@ -12,24 +12,25 @@ import hubActions from "../redux/actions/hub.actions";
 
 const HubDetailPage = () => {
   const { id } = useParams();
-  const [filterItem, setFilterItem] = useState("Rice");
+  const [filterItem, setFilterItem] = useState("rice");
   const isLoading = useSelector((state) => state.hubReducer.isLoading);
-  const hub = useSelector((state) => state.hubReducer.hub);
   const buttonTags = useSelector((state) => state.hubReducer.buttonTags);
   const dispatch = useDispatch();
 
   const handleFilterItem = (e) => {
-    // e.preventDefault();
-    console.log(e.target.value);
-    setFilterItem(e.target.value);
+    setFilterItem(e);
   };
   useEffect(() => {
     dispatch(hubActions.getHubDetail(id));
   }, [id, dispatch]);
 
+  const hub = useSelector((state) => state.hubReducer.selectedHub);
+
   return (
     <>
-      {!isLoading ? (
+      {isLoading ? (
+        <>....loading</>
+      ) : (
         <>
           {" "}
           <Helmet>
@@ -44,27 +45,47 @@ const HubDetailPage = () => {
           >
             <Container maxWidth={false}>
               <Grid container spacing={3}>
-                <Grid item lg={5} sm={5} xl={5} xs={12}>
-                  <h1>{filterItem}</h1>
+                <Grid item lg={5} sm={5} xl={6} xs={12}>
+                  <h3>
+                    {hub.name}'s <span>{filterItem} :</span>
+                  </h3>
                 </Grid>
-                <Grid item lg={7} sm={7} xl={7} xs={12}>
-                  {buttonTags.map((itemName) => (
-                    <Button value={itemName} onClick={handleFilterItem}>
-                      {itemName}
+                <Grid item lg={7} sm={7} xl={6} xs={12}>
+                  {buttonTags?.map((tag, idx) => (
+                    <Button
+                      key={idx}
+                      onClick={() => {
+                        handleFilterItem(tag);
+                      }}
+                    >
+                      {tag}
                     </Button>
                   ))}
                 </Grid>
               </Grid>
+              <CssBaseline></CssBaseline>
 
               <Grid container spacing={3}>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalHelps hub={hub} />
+                  <TotalHelps
+                    totalType="Request Received"
+                    filter={filterItem}
+                    data={hub?.requestSchedule}
+                  />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalHelps hub={hub} />
+                  <TotalHelps
+                    data={hub?.donationSchedule}
+                    totalType="Donation Scheduled"
+                    filter={filterItem}
+                  />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalHelps hub={hub} />
+                  <TotalHelps
+                    data={hub?.donationActual}
+                    totalType="Donation Received"
+                    filter={filterItem}
+                  />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
                   <Progress
@@ -73,20 +94,30 @@ const HubDetailPage = () => {
                       height: "100%",
                       overflow: "auto",
                     }}
+                    filter={filterItem}
+                    request={hub?.requestSchedule}
+                    donation={hub?.donationActual}
                   />
                 </Grid>
-                <Grid item lg={6} md={12} xl={20} xs={12}>
-                  <HelpChart hub={hub} />
+                <CssBaseline></CssBaseline>
+
+                <Grid container spacing={3}>
+                  <Grid item lg={6} md={12} xl={20} xs={12}>
+                    <HelpChart typeChart="bar" hub={hub} />
+                  </Grid>
+                  <Grid item lg={6} md={12} xl={20} xs={12}>
+                    <HelpChart typeChart="pie" hub={hub} />
+                  </Grid>
                 </Grid>
+                <CssBaseline></CssBaseline>
                 <Grid item lg={20} md={12} xl={20} xs={12}>
-                  <LatestDeliveries hub={hub} />
+                  <h3>Request list </h3>
+                  <LatestDeliveries storeName={hub?.name} storeId={id} />
                 </Grid>
               </Grid>
             </Container>
           </Box>
         </>
-      ) : (
-        <></>
       )}
     </>
   );

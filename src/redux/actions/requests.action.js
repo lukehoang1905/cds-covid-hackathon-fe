@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import * as types from "../constants/requests.constant";
 import api from "../../apiService";
 
-const getRequests = (pageNum, limit, isDone) => async (dispatch) => {
+const getRequests = (pageNum=1, limit=10, isDone) => async (dispatch) => {
   dispatch({ type: types.GET_REQUESTS_REQUEST, payload: null });
   try {
     let url = `${process.env.REACT_APP_BACKEND_API}charity/request?page=${pageNum}&limit=${limit}`;
