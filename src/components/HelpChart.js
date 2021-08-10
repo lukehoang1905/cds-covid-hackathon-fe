@@ -9,11 +9,10 @@ import {
   useTheme,
   colors,
 } from "@material-ui/core";
-
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
-const HelpsChart = (props) => {
+const HelpChart = (props) => {
   const theme = useTheme();
 
   const data = {
@@ -95,7 +94,7 @@ const HelpsChart = (props) => {
             Last 7 days
           </Button>
         }
-        title='Latest Sales'
+        title='Requests / Deliveries'
       />
       <Divider />
       <CardContent>
@@ -129,4 +128,4 @@ const HelpsChart = (props) => {
   );
 };
 
-export default HelpsChart;
+export default HelpChart;
