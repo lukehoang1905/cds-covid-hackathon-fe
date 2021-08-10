@@ -88,8 +88,10 @@ const sidebar = {
   ],
 };
 
-export default function RequestDetail() {
+export default function RequestDetail(props) {
   const classes = useStyles();
+  const { request, requestId } = props;
+  console.log(request);
 
   return (
     <React.Fragment>

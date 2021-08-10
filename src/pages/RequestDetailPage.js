@@ -27,7 +27,7 @@ const RequestDetailPage = () => {
           <ClipLoader color="#f86c6b" size={150} loading={true} />
         </div>
       ) : (
-        <RequestDetail />
+        <RequestDetail request={request} requestId={requestId} />
       )}
     </>
   );
