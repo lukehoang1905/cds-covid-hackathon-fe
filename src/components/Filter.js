@@ -4,14 +4,22 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import { Container, Typography, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    borderTop: "1px solid RGB(220, 222, 221)",
+    borderBottom: "1px solid RGB(220, 222, 221)",
+    maxWidth: "100%",
+  },
+  grid: {
+    height: "20vh",
   },
 }));
 
@@ -34,63 +42,82 @@ const Filter = () => {
   };
 
   return (
-    <div>
-      <p>
-        I want to see
-        <FormControl variant='filled' className={classes.formControl}>
-          <InputLabel id='demo-simple-select-filled-label'>
-            Help Target
-          </InputLabel>
-          <Select
-            labelId='demo-simple-select-filled-label'
-            id='demo-simple-select-filled'
-            value={helpTarget}
-            onChange={handleChangeTarget}
-          >
-            <MenuItem value='users'>Families</MenuItem>
-            <MenuItem value='ward'>Ward</MenuItem>
-            <MenuItem value='district'>District</MenuItem>
-            <MenuItem value='requests'>Help requests</MenuItem>
-          </Select>
-        </FormControl>
-        from
-        <FormControl variant='filled' className={classes.formControl}>
-          <InputLabel id='demo-simple-select-filled-label'>Location</InputLabel>
-          <Select
-            labelId='demo-simple-select-filled-label'
-            id='demo-simple-select-filled'
-            value={location}
-            onChange={handleChangeLocation}
-          >
-            <MenuItem value='1'>District 1</MenuItem>
-            <MenuItem value='2'>District 2</MenuItem>
-            <MenuItem value='3'>District 3</MenuItem>
-            <MenuItem value='4'>District 4</MenuItem>
-            <MenuItem value='5'>District 5</MenuItem>
-            <MenuItem value='7'>District 7</MenuItem>
-            <MenuItem value='9'>District 9</MenuItem>
-            <MenuItem value='10'>District 10</MenuItem>
-            <MenuItem value='binh thanh'>Binh Thanh District</MenuItem>
-          </Select>
-        </FormControl>
-        that has problems with
-        <FormControl variant='filled' className={classes.formControl}>
-          <InputLabel id='demo-simple-select-filled-label'>Problems</InputLabel>
-          <Select
-            labelId='demo-simple-select-filled-label'
-            id='demo-simple-select-filled'
-            value={problem}
-            onChange={handleChangeProblem}
-          >
-            <MenuItem value=''>Everything</MenuItem>
-            <MenuItem value='consumables'>Consumables</MenuItem>
-            <MenuItem value='cash'>Cash</MenuItem>
-            <MenuItem value='clothing'>Clothing</MenuItem>
-            <MenuItem value='shelter'>Shelter</MenuItem>
-          </Select>
-        </FormControl>
-      </p>
-    </div>
+    <Container className={classes.container}>
+      <Grid
+        className={classes.grid}
+        container
+        alignItems='center'
+        direction='row'
+      >
+        <Grid
+          item
+          container
+          direction='row'
+          alignItems='center'
+          justifyContent='center'
+          xs={12}
+        >
+          <Typography variant='h4'>I want to see</Typography>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Postings
+            </InputLabel>
+            <Select
+              labelId='demo-simple-select-outlined-label'
+              id='demo-simple-select-outlined'
+              value={helpTarget}
+              onChange={handleChangeTarget}
+            >
+              <MenuItem value='users'>Families</MenuItem>
+              <MenuItem value='ward'>Ward</MenuItem>
+              <MenuItem value='district'>District</MenuItem>
+              <MenuItem value='requests'>Help requests</MenuItem>
+            </Select>
+          </FormControl>
+          <Typography variant='h4'>from</Typography>
+
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Location
+            </InputLabel>
+            <Select
+              labelId='demo-simple-select-outlined-label'
+              id='demo-simple-select-outlined'
+              value={location}
+              onChange={handleChangeLocation}
+            >
+              <MenuItem value='1'>District 1</MenuItem>
+              <MenuItem value='2'>District 2</MenuItem>
+              <MenuItem value='3'>District 3</MenuItem>
+              <MenuItem value='4'>District 4</MenuItem>
+              <MenuItem value='5'>District 5</MenuItem>
+              <MenuItem value='7'>District 7</MenuItem>
+              <MenuItem value='9'>District 9</MenuItem>
+              <MenuItem value='10'>District 10</MenuItem>
+              <MenuItem value='binh thanh'>Binh Thanh District</MenuItem>
+            </Select>
+          </FormControl>
+          <Typography variant='h4'>that has problems with</Typography>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Problems
+            </InputLabel>
+            <Select
+              labelId='demo-simple-select-outlined-label'
+              id='demo-simple-select-outlined'
+              value={problem}
+              onChange={handleChangeProblem}
+            >
+              <MenuItem value=''>Everything</MenuItem>
+              <MenuItem value='consumables'>Consumables</MenuItem>
+              <MenuItem value='cash'>Cash</MenuItem>
+              <MenuItem value='clothing'>Clothing</MenuItem>
+              <MenuItem value='shelter'>Shelter</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
