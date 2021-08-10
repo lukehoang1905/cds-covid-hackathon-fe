@@ -19,10 +19,10 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/request' component={RequestFormPage} />
-          <Route exact path='/hub/:id' component={HubDetailPage} />
-          <Route exact path='/request/:id' component={RequestDetailPage} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/request" component={RequestFormPage} />
+          <Route exact path="/hub/:id" component={HubDetailPage} />
+          <Route exact path="/request/:id" component={RequestDetailPage} />
         </Switch>
       </Router>
     </ThemeProvider>
