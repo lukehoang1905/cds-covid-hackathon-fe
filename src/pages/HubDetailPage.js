@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { Badge, Box, Button, Container, Grid } from "@material-ui/core";
+import {  Box, Button, Container, Grid } from "@material-ui/core";
 
 import LatestDeliveries from "../components/LatestDeliveries";
 import HelpChart from "../components/HelpChart";
