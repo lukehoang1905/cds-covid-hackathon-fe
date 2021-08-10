@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import {  Box, Button, Container, Grid } from "@material-ui/core";
+import { Box, Button, Container, Grid } from "@material-ui/core";
 
 import LatestDeliveries from "../components/LatestDeliveries";
 import HelpChart from "../components/HelpChart";
@@ -12,16 +12,14 @@ import hubActions from "../redux/actions/hub.actions";
 
 const HubDetailPage = () => {
   const { id } = useParams();
-  const [filterItem, setFilterItem] = useState("Rice");
+  const [filterItem, setFilterItem] = useState("rice");
   const isLoading = useSelector((state) => state.hubReducer.isLoading);
   const hub = useSelector((state) => state.hubReducer.hub);
   const buttonTags = useSelector((state) => state.hubReducer.buttonTags);
   const dispatch = useDispatch();
 
   const handleFilterItem = (e) => {
-    // e.preventDefault();
-    console.log(e.target.value);
-    setFilterItem(e.target.value);
+    setFilterItem(e);
   };
   useEffect(() => {
     dispatch(hubActions.getHubDetail(id));
@@ -48,10 +46,8 @@ const HubDetailPage = () => {
                   <h1>{filterItem}</h1>
                 </Grid>
                 <Grid item lg={7} sm={7} xl={7} xs={12}>
-                  {buttonTags.map((itemName) => (
-                    <Button value={itemName} onClick={handleFilterItem}>
-                      {itemName}
-                    </Button>
+                  {buttonTags.map((tag) => (
+                    <Button onClick={() => handleFilterItem(tag)}>{tag}</Button>
                   ))}
                 </Grid>
               </Grid>
