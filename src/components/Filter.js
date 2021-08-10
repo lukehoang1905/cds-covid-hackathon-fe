@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { Container, Typography, Grid } from "@material-ui/core";
+import { Container, Typography, Grid, Chip } from "@material-ui/core";
+
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+import hubActions from "../redux/actions/hub.actions";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -21,13 +27,18 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     height: "300px",
   },
+  chip: {
+    marginLeft: "10px",
+  },
 }));
 
 const Filter = () => {
   const classes = useStyles();
-  const [helpTarget, setHelpTarget] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [problem, setProblem] = React.useState("");
+  const [helpTarget, setHelpTarget] = useState("");
+  const [location, setLocation] = useState("");
+  const [problem, setProblem] = useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleChangeTarget = (event) => {
     setHelpTarget(event.target.value);
@@ -40,6 +51,13 @@ const Filter = () => {
   const handleChangeProblem = (event) => {
     setProblem(event.target.value);
   };
+
+  useEffect(() => {
+    dispatch(hubActions.getHubs());
+  }, [dispatch]);
+
+  const state = useSelector((state) => state);
+  const hubs = state.hubReducer.hub;
 
   return (
     <Container className={classes.container}>
@@ -115,6 +133,31 @@ const Filter = () => {
               <MenuItem value='shelter'>Shelter</MenuItem>
             </Select>
           </FormControl>
+        </Grid>
+        <Grid
+          item
+          container
+          direction='row'
+          alignItems='center'
+          justifyContent='center'
+          xs={12}
+        >
+          <Typography variant='h4'>AVAILABLE HUBS: </Typography>
+          {hubs?.map((info) => {
+            return (
+              <Grid item xs={0.5}>
+                <Chip
+                  className={classes.chip}
+                  label={info.name}
+                  component='a'
+                  clickable
+                  onClick={() => {
+                    history.push(`/hub/${info.admin._id}`);
+                  }}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
       </Grid>
     </Container>

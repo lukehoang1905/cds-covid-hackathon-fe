@@ -15,6 +15,7 @@ import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    minHeight: 415,
     border: "1px solid RGB(220, 222, 221)",
   },
   media: {

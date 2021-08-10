@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
 const RequestSection = () => {
   const [pageNum, setPageNum] = useState(1);
   const [isDone] = useState("");
-  const totalPage = 3;
-  const limit = 10;
+  const totalPage = 15;
+  const limit = 9;
 
   const classes = useStyles();
   const dispatch = useDispatch();
