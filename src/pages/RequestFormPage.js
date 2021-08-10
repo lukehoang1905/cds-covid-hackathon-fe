@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
@@ -17,6 +16,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
+
+import { useSelector, useDispatch } from "react-redux";
+
+import requestsActions from "../redux/actions/requests.action";
 
 function Copyright() {
   return (
@@ -74,6 +77,12 @@ const RequestFormPage = () => {
   };
 
   const { covid, old, unemployed, children, accident } = state;
+  const dispatch = useDispatch()
+  const [request, setRequest] = useState()
+  const handleOnClick = (e) => {
+    e.preventDefault()
+    dispatch(requestsActions.createRequests(request))
+  }
 
   return (
     <Container component='main' maxWidth='sm'>
@@ -286,6 +295,7 @@ const RequestFormPage = () => {
             variant='contained'
             color='primary'
             className={classes.submit}
+            onClick={handleOnClick}
           >
             Xác nhận
           </Button>

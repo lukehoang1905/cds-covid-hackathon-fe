@@ -36,5 +36,19 @@ const getRequestDetail = (requestId) => async (dispatch) => {
   }
 };
 
-const requestsActions = { getRequests, getRequestDetail };
+const createRequests = (request) => async (dispatch) => {
+  dispatch({ type: types.CREATE_REQUESTS_REQUEST, payload: null });
+  try {
+    let url = `https://cs-covid-be.herokuapp.com/charity/request`;
+
+    const data = await api.create(url, request);
+    console.log("hahaha", data);
+    dispatch({ type: types.CREATE_REQUESTS_SUCCESS, payload: data.data.requests });
+  } catch (error) {
+    toast.error(error.message);
+    dispatch({ type: types.CREATE_REQUESTS_FAILURE, payload: error });
+  }
+};
+
+const requestsActions = { getRequests, getRequestDetail, createRequests };
 export default requestsActions;

@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import HomeIcon from "@material-ui/icons/Home";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SearchIcon from "@material-ui/icons/Search";
 import { useHistory } from "react-router-dom";
 
@@ -88,6 +89,15 @@ export default function SearchAppBar() {
             }}
           >
             <HomeIcon />
+          </IconButton>
+          <IconButton
+            edge='end'
+            className={classes.menuButton}
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
+            <ExitToAppIcon />
           </IconButton>
           <Typography
             style={{ cursor: "pointer", color: "black" }}
