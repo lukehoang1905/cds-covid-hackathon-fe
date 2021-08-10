@@ -14,7 +14,7 @@ export default function RequestButton() {
   const classes = useStyles();
   const history = useHistory();
   function handleClickRequest() {
-    history.push("/request");
+    history.push("/request/form");
   }
 
   return (
