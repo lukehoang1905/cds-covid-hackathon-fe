@@ -90,10 +90,9 @@ export default function SearchAppBar() {
             <HomeIcon />
           </IconButton>
           <Typography
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", color: "black" }}
             className={classes.title}
             variant='h3'
-            style={{ color: "black" }}
             onClick={() => {
               history.push("/");
             }}
