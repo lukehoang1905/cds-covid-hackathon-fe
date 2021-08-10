@@ -5,8 +5,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { alpha, makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
+import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <div className={classes.root}>
@@ -81,14 +83,20 @@ export default function SearchAppBar() {
           <IconButton
             edge='start'
             className={classes.menuButton}
-            aria-label='open drawer'
+            onClick={() => {
+              history.push("/");
+            }}
           >
-            <MenuIcon />
+            <HomeIcon />
           </IconButton>
           <Typography
+            style={{ cursor: "pointer" }}
             className={classes.title}
             variant='h3'
             style={{ color: "black" }}
+            onClick={() => {
+              history.push("/");
+            }}
             noWrap
           >
             HELPSTARTER

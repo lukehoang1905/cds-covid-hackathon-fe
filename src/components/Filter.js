@@ -75,6 +75,31 @@ const Filter = () => {
           justifyContent='center'
           xs={12}
         >
+          <Typography variant='h4'>Hubs: </Typography>
+          {hubs?.map((info) => {
+            return (
+              <Grid item xs={0.5}>
+                <Chip
+                  className={classes.chip}
+                  label={info.name}
+                  component='a'
+                  clickable
+                  onClick={() => {
+                    history.push(`/hub/${info.admin._id}`);
+                  }}
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
+        <Grid
+          item
+          container
+          direction='row'
+          alignItems='center'
+          justifyContent='center'
+          xs={12}
+        >
           <Typography variant='h4'>I want to see</Typography>
           <FormControl variant='outlined' className={classes.formControl}>
             <InputLabel id='demo-simple-select-outlined-label'>
@@ -133,31 +158,6 @@ const Filter = () => {
               <MenuItem value='shelter'>Shelter</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
-        <Grid
-          item
-          container
-          direction='row'
-          alignItems='center'
-          justifyContent='center'
-          xs={12}
-        >
-          <Typography variant='h4'>AVAILABLE HUBS: </Typography>
-          {hubs?.map((info) => {
-            return (
-              <Grid item xs={0.5}>
-                <Chip
-                  className={classes.chip}
-                  label={info.name}
-                  component='a'
-                  clickable
-                  onClick={() => {
-                    history.push(`/hub/${info.admin._id}`);
-                  }}
-                />
-              </Grid>
-            );
-          })}
         </Grid>
       </Grid>
     </Container>
