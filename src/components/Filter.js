@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
   },
   grid: {
-    height: "20vh",
+    height: "300px",
   },
 }));
 
