@@ -1,4 +1,3 @@
-import { Typography } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import React from "react";
 
@@ -9,8 +8,17 @@ const PaginationBar = ({ pageNum, setPageNum, totalPageNum }) => {
   };
   return (
     <>
-      <Typography>Page: {pageNum}</Typography>
-      <Pagination count={totalPageNum} page={pageNum} onChange={handleChange} />
+      <Pagination
+        style={{
+          padding: "20px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        count={totalPageNum}
+        page={pageNum}
+        onChange={handleChange}
+      />
     </>
   );
 };

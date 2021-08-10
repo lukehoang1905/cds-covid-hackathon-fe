@@ -5,7 +5,10 @@ import api from "../../apiService";
 const getRequests = (pageNum, limit, isDone) => async (dispatch) => {
   dispatch({ type: types.GET_REQUESTS_REQUEST, payload: null });
   try {
-    let url = `${process.env.REACT_APP_BACKEND_API}charity/request?page=${pageNum}?limit=${limit}?isDone=${isDone}`;
+    let url = `${process.env.REACT_APP_BACKEND_API}charity/request?page=${pageNum}&limit=${limit}`;
+    if (isDone) {
+      url = url + `?isDone=${isDone}`;
+    }
     const data = await api.get(url);
     dispatch({
       type: types.GET_REQUESTS_SUCCESS,

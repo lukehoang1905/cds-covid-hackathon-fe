@@ -16,7 +16,7 @@ const hubReducer = (state = initialState, action) => {
       return {
         ...state,
         hub: payload,
-        buttonTags: Object.keys(payload.requestDeliver),
+        // buttonTags: Object.keys(payload.requestDeliver),
         loading: false,
       };
     case types.GET_HUB_FAILURE:
