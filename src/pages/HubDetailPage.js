@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { Box, Button, Container, Grid } from "@material-ui/core";
+import { Box, Button, Container, CssBaseline, Grid } from "@material-ui/core";
 
 import LatestDeliveries from "../components/LatestDeliveries";
 import HelpChart from "../components/HelpChart";
@@ -24,7 +24,7 @@ const HubDetailPage = () => {
     dispatch(hubActions.getHubDetail(id));
   }, [id, dispatch]);
 
-  const hub = useSelector((state) => state.hubReducer.hub);
+  const hub = useSelector((state) => state.hubReducer.selectedHub);
 
   return (
     <>
@@ -43,15 +43,15 @@ const HubDetailPage = () => {
               py: 3,
             }}
           >
-            <title>Hub Page</title>
-
             <Container maxWidth={false}>
               <Grid container spacing={3}>
                 <Grid item lg={5} sm={5} xl={6} xs={12}>
-                  <h1>{filterItem}</h1>
+                  <h3>
+                    {hub.name}'s <span>{filterItem} :</span>
+                  </h3>
                 </Grid>
                 <Grid item lg={7} sm={7} xl={6} xs={12}>
-                  {buttonTags.map((tag, idx) => (
+                  {buttonTags?.map((tag, idx) => (
                     <Button
                       key={idx}
                       onClick={() => {
@@ -63,6 +63,7 @@ const HubDetailPage = () => {
                   ))}
                 </Grid>
               </Grid>
+              <CssBaseline></CssBaseline>
 
               <Grid container spacing={3}>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
@@ -81,7 +82,7 @@ const HubDetailPage = () => {
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
                   <TotalHelps
-                    data={hub?.requestSchedule}
+                    data={hub?.donationActual}
                     totalType="Donation Received"
                     filter={filterItem}
                   />
@@ -98,6 +99,8 @@ const HubDetailPage = () => {
                     donation={hub?.donationActual}
                   />
                 </Grid>
+                <CssBaseline></CssBaseline>
+
                 <Grid container spacing={3}>
                   <Grid item lg={6} md={12} xl={20} xs={12}>
                     <HelpChart typeChart="bar" hub={hub} />
@@ -106,7 +109,9 @@ const HubDetailPage = () => {
                     <HelpChart typeChart="pie" hub={hub} />
                   </Grid>
                 </Grid>
+                <CssBaseline></CssBaseline>
                 <Grid item lg={20} md={12} xl={20} xs={12}>
+                  <h3>Request list </h3>
                   <LatestDeliveries storeName={hub?.name} storeId={id} />
                 </Grid>
               </Grid>
