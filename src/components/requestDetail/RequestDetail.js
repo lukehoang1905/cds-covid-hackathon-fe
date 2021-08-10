@@ -99,10 +99,10 @@ export default function RequestDetail(props) {
       <Container maxWidth="lg">
         {/* <Header title="Blog" sections={sections} /> */}
         <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
+          <MainFeaturedPost post={mainFeaturedPost} request={request} />
           <Grid container spacing={4}>
             {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
+              <FeaturedPost key={post.title} post={post} request={request} />
             ))}
           </Grid>
           <Grid container spacing={5} className={classes.mainGrid}>
@@ -112,6 +112,7 @@ export default function RequestDetail(props) {
               description={sidebar.description}
               archives={sidebar.archives}
               social={sidebar.social}
+              request={request}
             />
           </Grid>
         </main>

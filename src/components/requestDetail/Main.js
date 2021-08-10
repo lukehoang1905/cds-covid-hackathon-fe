@@ -5,6 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Markdown from "./Markdown";
+import { Link } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   markdown: {
@@ -35,6 +37,9 @@ export default function Main(props) {
         <p>{post} </p>
         <p>{post} </p>
       </Typography>
+      <Button variant="contained">
+        <Link to="/hub/:id">Go To Store</Link>
+      </Button>
     </Grid>
   );
 }

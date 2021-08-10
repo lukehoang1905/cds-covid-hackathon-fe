@@ -7,6 +7,7 @@ const getRequests = (pageNum, limit, isDone) => async (dispatch) => {
   try {
     let url = `${process.env.REACT_APP_BACKEND_API}charity/request?page=${pageNum}?limit=${limit}?isDone=${isDone}`;
     const data = await api.get(url);
+    console.log("haha in request", data);
     dispatch({
       type: types.GET_REQUESTS_SUCCESS,
       payload: data.data.requests,
@@ -20,8 +21,9 @@ const getRequests = (pageNum, limit, isDone) => async (dispatch) => {
 const getRequestDetail = (requestId) => async (dispatch) => {
   dispatch({ type: types.GET_REQUEST_DETAIL_REQUEST, payload: null });
   try {
-    let url = `${process.env.REACT_APP_BACKEND_API}api/requests/${requestId}`;
+    let url = `${process.env.REACT_APP_BACKEND_API}charity/request/${requestId}`;
     const data = await api.get(url);
+    console.log("haha in request for detail", data);
 
     dispatch({
       type: types.GET_REQUEST_DETAIL_SUCCESS,
