@@ -8,8 +8,13 @@ const getHubDetail = (storeId) => async (dispatch) => {
   try {
     let url = `${process.env.REACT_APP_BACKEND_API}charity/store/${storeId}`;
     const data = await api.get(url);
+    const buttonTags = Object.keys(data.data.store.requestDeliver);
     console.log("get hub detail", data);
-    dispatch({ type: types.GET_HUB_SUCCESS, payload: data.data.store });
+    dispatch({
+      type: types.GET_HUB_SUCCESS,
+      payload: data.data.store,
+      buttonTags: buttonTags,
+    });
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.GET_HUB_FAILURE, payload: error });

@@ -17,125 +17,77 @@ import {
   Tooltip,
 } from "@material-ui/core";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
+import { useDispatch, useSelector } from "react-redux";
+import requestsActions from "../redux/actions/requests.action";
+import { useEffect } from "react";
 
-const orders = [
-  {
-    id: uuid(),
-    ref: "CDD1049",
-    amount: 30.5,
-    customer: {
-      name: "Ekaterina Tankova",
-    },
-    createdAt: 1555016400000,
-    status: "pending",
-  },
-  {
-    id: uuid(),
-    ref: "CDD1048",
-    amount: 25.1,
-    customer: {
-      name: "Cao Yu",
-    },
-    createdAt: 1555016400000,
-    status: "delivered",
-  },
-  {
-    id: uuid(),
-    ref: "CDD1047",
-    amount: 10.99,
-    customer: {
-      name: "Alexa Richardson",
-    },
-    createdAt: 1554930000000,
-    status: "refunded",
-  },
-  {
-    id: uuid(),
-    ref: "CDD1046",
-    amount: 96.43,
-    customer: {
-      name: "Anje Keizer",
-    },
-    createdAt: 1554757200000,
-    status: "pending",
-  },
-  {
-    id: uuid(),
-    ref: "CDD1045",
-    amount: 32.54,
-    customer: {
-      name: "Clarke Gillebert",
-    },
-    createdAt: 1554670800000,
-    status: "delivered",
-  },
-  {
-    id: uuid(),
-    ref: "CDD1044",
-    amount: 16.76,
-    customer: {
-      name: "Adam Denisov",
-    },
-    createdAt: 1554670800000,
-    status: "delivered",
-  },
-];
+const LatestDeliveries = ({ storeName, storeId }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(requestsActions.getRequests(1, 100));
+  }, [dispatch]);
+  let requests = useSelector((state) => state.requestsReducer.requests);
+  console.log("...", requests);
+  if (!storeName || !storeId) {
+    return <>...loading</>;
+  }
 
-const LatestDeliveries = (props) => (
-  <Card {...props}>
-    <CardHeader title='Latest Deliveries' />
-    <Divider />
-    <PerfectScrollbar>
-      <Box sx={{ minWidth: 800 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Order Ref</TableCell>
-              <TableCell>Customer</TableCell>
-              <TableCell sortDirection='desc'>
-                <Tooltip enterDelay={300} title='Sort'>
-                  <TableSortLabel active direction='desc'>
-                    Date
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
-              <TableCell>Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {orders.map((order) => (
-              <TableRow hover key={order.id}>
-                <TableCell>{order.ref}</TableCell>
-                <TableCell>{order.customer.name}</TableCell>
-                <TableCell>
-                  {moment(order.createdAt).format("DD/MM/YYYY")}
-                </TableCell>
-                <TableCell>
-                  <Chip color='primary' label={order.status} size='small' />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Box>
-    </PerfectScrollbar>
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "flex-end",
-        p: 2,
-      }}
-    >
-      <Button
-        color='primary'
-        endIcon={<ArrowRightIcon />}
-        size='small'
-        variant='text'
-      >
-        View all
-      </Button>
-    </Box>
-  </Card>
-);
+  return (
+    <>
+      {requests ? (
+        <Card>
+          <CardHeader title="" />
+          <Divider />
+          <PerfectScrollbar>
+            <Box sx={{ minWidth: 800 }}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Phone</TableCell>
+                    <TableCell>Address</TableCell>
 
+                    {Object.keys(requests[0].requestReceive).map((el, idx) => (
+                      <TableCell key={el + idx}>{el}</TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {requests.map((request) => (
+                    <TableRow hover key={request._id}>
+                      <TableCell>{request.from.name}</TableCell>
+                      <TableCell>{request.from.phone}</TableCell>
+                      <TableCell>{request.from.address.streetName}</TableCell>
+                      {request.requestSchedule.map((el) => (
+                        <TableCell>{el.value || 0}</TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Box>
+          </PerfectScrollbar>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              p: 2,
+            }}
+          >
+            <Button
+              color="primary"
+              endIcon={<ArrowRightIcon />}
+              size="small"
+              variant="text"
+            >
+              View all
+            </Button>
+          </Box>
+        </Card>
+      ) : (
+        <>..loading</>
+      )}
+    </>
+  );
+};
 export default LatestDeliveries;

@@ -14,7 +14,6 @@ const HubDetailPage = () => {
   const { id } = useParams();
   const [filterItem, setFilterItem] = useState("rice");
   const isLoading = useSelector((state) => state.hubReducer.isLoading);
-  const hub = useSelector((state) => state.hubReducer.hub);
   const buttonTags = useSelector((state) => state.hubReducer.buttonTags);
   const dispatch = useDispatch();
 
@@ -25,9 +24,13 @@ const HubDetailPage = () => {
     dispatch(hubActions.getHubDetail(id));
   }, [id, dispatch]);
 
+  const hub = useSelector((state) => state.hubReducer.hub);
+
   return (
     <>
-      {!isLoading ? (
+      {isLoading ? (
+        <>....loading</>
+      ) : (
         <>
           {" "}
           <Helmet>
@@ -40,27 +43,48 @@ const HubDetailPage = () => {
               py: 3,
             }}
           >
+            <title>Hub Page</title>
+
             <Container maxWidth={false}>
               <Grid container spacing={3}>
-                <Grid item lg={5} sm={5} xl={5} xs={12}>
+                <Grid item lg={5} sm={5} xl={6} xs={12}>
                   <h1>{filterItem}</h1>
                 </Grid>
-                <Grid item lg={7} sm={7} xl={7} xs={12}>
-                  {buttonTags.map((tag) => (
-                    <Button onClick={() => handleFilterItem(tag)}>{tag}</Button>
+                <Grid item lg={7} sm={7} xl={6} xs={12}>
+                  {buttonTags.map((tag, idx) => (
+                    <Button
+                      key={idx}
+                      onClick={() => {
+                        handleFilterItem(tag);
+                      }}
+                    >
+                      {tag}
+                    </Button>
                   ))}
                 </Grid>
               </Grid>
 
               <Grid container spacing={3}>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalHelps hub={hub} />
+                  <TotalHelps
+                    totalType="Request Received"
+                    filter={filterItem}
+                    data={hub?.requestSchedule}
+                  />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalHelps hub={hub} />
+                  <TotalHelps
+                    data={hub?.donationSchedule}
+                    totalType="Donation Scheduled"
+                    filter={filterItem}
+                  />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalHelps hub={hub} />
+                  <TotalHelps
+                    data={hub?.requestSchedule}
+                    totalType="Donation Received"
+                    filter={filterItem}
+                  />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
                   <Progress
@@ -69,20 +93,26 @@ const HubDetailPage = () => {
                       height: "100%",
                       overflow: "auto",
                     }}
+                    filter={filterItem}
+                    request={hub?.requestSchedule}
+                    donation={hub?.donationActual}
                   />
                 </Grid>
-                <Grid item lg={6} md={12} xl={20} xs={12}>
-                  <HelpChart hub={hub} />
+                <Grid container spacing={3}>
+                  <Grid item lg={6} md={12} xl={20} xs={12}>
+                    <HelpChart typeChart="bar" hub={hub} />
+                  </Grid>
+                  <Grid item lg={6} md={12} xl={20} xs={12}>
+                    <HelpChart typeChart="pie" hub={hub} />
+                  </Grid>
                 </Grid>
                 <Grid item lg={20} md={12} xl={20} xs={12}>
-                  <LatestDeliveries hub={hub} />
+                  <LatestDeliveries storeName={hub?.name} storeId={id} />
                 </Grid>
               </Grid>
             </Container>
           </Box>
         </>
-      ) : (
-        <></>
       )}
     </>
   );
