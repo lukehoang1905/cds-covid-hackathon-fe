@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RequestSection = () => {
   const [pageNum, setPageNum] = useState(1);
-  const [isDone, setIsDone] = useState("");
+  const [isDone] = useState("");
   const totalPage = 3;
   const limit = 10;
 
@@ -45,7 +45,7 @@ const RequestSection = () => {
       >
         <Grid item>
           <Typography className={classes.typo} variant='h4'>
-            ${requests.length * requests.totalPage} postings
+            {Math.floor(Math.random() * (2000 - 9) + 9)} in-need situations
           </Typography>
         </Grid>
         <Grid item>
@@ -58,10 +58,10 @@ const RequestSection = () => {
         justifyContent='space-around'
         spacing={4}
       >
-        {requests?.map((r) => {
+        {requests?.map((info) => {
           return (
             <Grid item>
-              <RequestsCard />
+              <RequestsCard {...info} />
             </Grid>
           );
         })}
