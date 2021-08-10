@@ -15,12 +15,10 @@ const TotalHelps = (props) => (
     <CardContent>
       <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
         <Grid item>
-          <Typography color='textSecondary' gutterBottom variant='h6'>
-            TOTAL DELIVERIES
+          <Typography color="textSecondary" gutterBottom variant="h6">
+            TOTAL REQUEST
           </Typography>
-          <Typography color='textPrimary' variant='h3'>
-            569
-          </Typography>
+          <Typography color="textPrimary" variant="h3"></Typography>
         </Grid>
         <Grid item>
           <Avatar
@@ -43,7 +41,7 @@ const TotalHelps = (props) => (
       >
         <ArrowUpwardIcon sx={{ color: green[900] }} />
         <Typography
-          variant='body2'
+          variant="body2"
           sx={{
             color: green[900],
             mr: 1,
@@ -51,7 +49,7 @@ const TotalHelps = (props) => (
         >
           16%
         </Typography>
-        <Typography color='textSecondary' variant='caption'>
+        <Typography color="textSecondary" variant="caption">
           &nbsp;Since last month
         </Typography>
       </Box>

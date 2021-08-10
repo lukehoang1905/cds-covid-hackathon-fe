@@ -3,6 +3,7 @@ import * as types from "../constants/hub.constants";
 const initialState = {
   hub: [],
   loading: false,
+  buttonTags: [],
 };
 
 const hubReducer = (state = initialState, action) => {
@@ -12,7 +13,12 @@ const hubReducer = (state = initialState, action) => {
     case types.GET_HUB_REQUEST:
       return { ...state, loading: true };
     case types.GET_HUB_SUCCESS:
-      return { ...state, hub: payload, loading: false };
+      return {
+        ...state,
+        hub: payload,
+        buttonTags: Object.keys(payload.requestDeliver),
+        loading: false,
+      };
     case types.GET_HUB_FAILURE:
       return { ...state, loading: false };
     default:
