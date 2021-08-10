@@ -14,7 +14,7 @@ const requestsReducer = (state = initialState, action) => {
     case types.GET_REQUESTS_REQUEST:
       return { ...state, loading: true };
     case types.GET_REQUESTS_SUCCESS:
-      return { ...state, REQUESTs: payload, loading: false };
+      return { ...state, requests: payload, loading: false };
     case types.GET_REQUESTS_FAILURE:
       return { ...state, loading: false };
 
