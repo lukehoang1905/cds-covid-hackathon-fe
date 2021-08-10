@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from "react-redux";
 import authActions from '../redux/actions/auth.action';
@@ -53,7 +54,7 @@ export default function SignIn() {
     const classes = useStyles();
     const dispatch = useDispatch()
     const [user, setUser] = useState({ phone: "", password: "" })
-
+    const history = useHistory();
     const onChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
@@ -62,6 +63,10 @@ export default function SignIn() {
         e.preventDefault()
         dispatch(authActions.login(user))
         console.log("this user", user)
+    }
+
+    const handleRouteRegister = () => {
+        history.push("/register")
     }
 
     return (
@@ -118,7 +123,7 @@ export default function SignIn() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link variant="body2" onClick={handleRouteRegister}>
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>

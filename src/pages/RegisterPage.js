@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 
 import { useDispatch } from "react-redux";
 import authActions from '../redux/actions/auth.action';
+import { useHistory } from 'react-router-dom';
 
 function Copyright() {
     return (
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
     const dispatch = useDispatch()
+    const history = useHistory()
     const [user, setUser] = useState({
         name: "",
         phone: "",
@@ -67,6 +69,9 @@ export default function SignUp() {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
 
+    const handleRouteLogin = () => {
+        history.push("/login")
+    }
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -208,7 +213,7 @@ export default function SignUp() {
                     </Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link variant="body2" onClick={handleRouteLogin}>
                                 Already have an account? Sign in
                             </Link>
                         </Grid>

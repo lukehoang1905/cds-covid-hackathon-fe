@@ -26,8 +26,8 @@ function App() {
           <Route exact path='/login' component={LoginPage} />
           <Route exact path='/register' component={RegisterPage} />
           <Route exact path='/request/form' component={RequestFormPage} />
-          <Route exact path='/hub/:id' component={HubDetailPage} />
           <Route exact path='/request/:id' component={RequestDetailPage} />
+          <Route exact path="/hub/:id" component={HubDetailPage} />
         </Switch>
       </Router>
     </ThemeProvider>

@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const requestsReducer = (state = initialState, action) => {
-  console.log("hihi", action);
   const { type, payload } = action;
 
   switch (type) {
