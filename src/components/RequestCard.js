@@ -49,7 +49,14 @@ export default function RequestsCard({ ...info }) {
   return (
     <Card className={classes.root}>
       <CardHeader title={info.from.name} />
-      <CardMedia className={classes.media} image={info.from.image} />
+      <CardMedia
+        className={classes.media}
+        image={
+          info.from.image +
+          `?random=` +
+          (Date.now() + Math.random() * (20 - 1) + 1)
+        }
+      />
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
           {info.description}
