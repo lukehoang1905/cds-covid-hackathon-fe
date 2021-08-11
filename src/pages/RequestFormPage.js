@@ -17,7 +17,7 @@ import Container from "@material-ui/core/Container";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import requestsActions from "../redux/actions/requests.action";
 
@@ -69,20 +69,18 @@ const RequestFormPage = () => {
     children: false,
     accident: false,
   });
-  const [product, setProduct] = React.useState("");
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
-    setProduct(event.target.value);
   };
 
   const { covid, old, unemployed, children, accident } = state;
-  const dispatch = useDispatch()
-  const [request, setRequest] = useState()
+  const dispatch = useDispatch();
+  const [request] = useState();
   const handleOnClick = (e) => {
-    e.preventDefault()
-    dispatch(requestsActions.createRequests(request))
-  }
+    e.preventDefault();
+    dispatch(requestsActions.createRequests(request));
+  };
 
   return (
     <Container component='main' maxWidth='sm'>

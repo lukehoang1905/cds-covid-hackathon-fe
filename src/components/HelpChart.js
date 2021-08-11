@@ -16,7 +16,7 @@ import { useState } from "react";
 const HelpChart = ({ hub, typeChart }) => {
   const theme = useTheme();
   console.log("hub.requestSchedule", hub);
-  const [pieFilter, setPieFilter] = useState("Request");
+  const [pieFilter] = useState("Request");
   if (!hub.requestSchedule) return <>...loading</>;
 
   const barData = {
@@ -111,7 +111,7 @@ const HelpChart = ({ hub, typeChart }) => {
     <Card>
       <CardHeader
         action={
-          <Button variant="outlined" size="small">
+          <Button variant='outlined' size='small'>
             toggle {pieFilter === "Request" ? "Donation" : "Request"}
           </Button>
         }
@@ -145,10 +145,10 @@ const HelpChart = ({ hub, typeChart }) => {
         }}
       >
         <Button
-          color="primary"
+          color='primary'
           endIcon={<ArrowRightIcon />}
-          size="small"
-          variant="text"
+          size='small'
+          variant='text'
         >
           Overview
         </Button>
