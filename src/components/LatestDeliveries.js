@@ -1,20 +1,15 @@
-import moment from "moment";
-import { v4 as uuid } from "uuid";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   Box,
   Button,
   Card,
   CardHeader,
-  Chip,
   Divider,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  TableSortLabel,
-  Tooltip,
 } from "@material-ui/core";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,7 +31,7 @@ const LatestDeliveries = ({ storeName, storeId }) => {
     <>
       {requests ? (
         <Card>
-          <CardHeader title="" />
+          <CardHeader title='' />
           <Divider />
           <PerfectScrollbar>
             <Box sx={{ minWidth: 800 }}>
@@ -75,10 +70,10 @@ const LatestDeliveries = ({ storeName, storeId }) => {
             }}
           >
             <Button
-              color="primary"
+              color='primary'
               endIcon={<ArrowRightIcon />}
-              size="small"
-              variant="text"
+              size='small'
+              variant='text'
             >
               View all
             </Button>
