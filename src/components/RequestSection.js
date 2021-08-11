@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
 import requestsActions from "../redux/actions/requests.action";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import RequestButton from "./RequestButton";
@@ -39,9 +38,9 @@ const RequestSection = () => {
       <Grid
         className={classes.grid}
         container
-        alignItems="center"
-        justifyContent="space-between"
-        direction="row"
+        alignItems='center'
+        justifyContent='space-between'
+        direction='row'
       >
         <Grid item>
           <Typography className={classes.typo} variant='h4'>
@@ -55,7 +54,7 @@ const RequestSection = () => {
       <Grid
         sx={{ flexGrow: 1 }}
         container
-        justifyContent="space-around"
+        justifyContent='space-around'
         spacing={4}
       >
         {requests?.map((info) => {
