@@ -12,6 +12,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
 
+import placeholderImage from "../images/person.jpg";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -50,12 +52,9 @@ export default function RequestsCard({ ...info }) {
     <Card className={classes.root}>
       <CardHeader title={info.from.name} />
       <CardMedia
+        style={{ width: 350, height: 245 }}
         className={classes.media}
-        image={
-          info.from.image +
-          `?random=` +
-          (Date.now() + Math.random() * (20 - 1) + 1)
-        }
+        image={placeholderImage}
       />
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
